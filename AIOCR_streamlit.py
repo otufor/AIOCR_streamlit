@@ -4,11 +4,11 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 import streamlit as st
-from AIOCR_detect import AiocrDetrect
+from AIOCR_detect import AiocrDetect
 st.title('OCRアプリ')
 
 # DetectFLG = st.select_slider("DetectFLG:", [False, True])
-aiocr = AiocrDetrect()
+aiocr = AiocrDetect(st.secrets["subscription_key"], st.secrets["endpoint"])
 
 uploaded_file = st.file_uploader('Choose an image...', type=['jpg','jpeg','png'])
 if uploaded_file is not None:
