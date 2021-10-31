@@ -1,0 +1,8 @@
+numpy
+matplotlib
+Pillow
+tensorflow
+tf-hub-nightly
+azure-cognitiveservices-vision-computervision
+ipykernel
+streamlit
