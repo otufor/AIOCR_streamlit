@@ -17,8 +17,7 @@ if uploaded_file is not None:   # ファイルアップロード後に動く
     img = Image.open(uploaded_file)
     img_path = os.path.join('img', uploaded_file.name)
     img.save(img_path)
-    """### アップロード画像"""
-    st.image(img, use_column_width=True)
+    st_image = st.image(img, use_column_width=True)
     if btn:
         my_bar.progress(10)
         # AIOCR実行
@@ -29,7 +28,6 @@ if uploaded_file is not None:   # ファイルアップロード後に動く
         text_result = aiocr.get_ocr_results(read_result)
 
         # 描画
-        """### OCR結果"""
         draw = ImageDraw.Draw(img)
         for idx, line in enumerate(text_result.lines, start=1):
             result_text = line.text
@@ -48,7 +46,8 @@ if uploaded_file is not None:   # ファイルアップロード後に動く
             draw.rectangle(result_textbox, fill='green')
             draw.text(result_bb1, str(idx), fill='white', font=font)
 
-        st.image(img)
+        # 画面イメージをOCR結果に上書き
+        st_image.image(img)
         st.markdown('**認識された文字列**')
         for idx, line in enumerate(text_result.lines, start=1):
             st.markdown(f'{idx}. {line.text}')
