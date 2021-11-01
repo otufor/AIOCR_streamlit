@@ -9,11 +9,13 @@ st.title('OCRアプリ')
 
 aiocr = AiocrDetect(st.secrets["subscription_key"], st.secrets["endpoint"])
 
-uploaded_file = st.file_uploader(
+st.sidebar.markdown("# 画像アップロード")
+uploaded_file = st.sidebar.file_uploader(
     'Choose an image...', type=['jpg', 'jpeg', 'png'])
 if uploaded_file is not None:   # ファイルアップロード後に動く
-    btn = st.button('Press here to send image')
-    my_bar = st.progress(0)
+    st.sidebar.markdown("# 解析実行")
+    btn = st.sidebar.button('Press here to send image')
+    my_bar = st.sidebar.progress(0)
     img = Image.open(uploaded_file)
     img_path = os.path.join('img', uploaded_file.name)
     img.save(img_path)
